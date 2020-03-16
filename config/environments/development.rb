@@ -31,8 +31,22 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
+# mailerの設定
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+  # 送信方法をSMTPに設定
+  config.action_mailer.delivery_method = :smtp
+  # SMTPの設定
+  # ポート番号、ホスト名、ドメイン、送り主アドレス、PW、認証方法、TLS認証設定
+  config.action_mailer.smtp_settings = {
+     port:                 587,
+     address:              'smtp.gmail.com',
+     domain:               'gmail.com',
+     user_name:            'tenkimailer_naotosg123@gmail.com',
+     password:             'hogehoge123',
+     authentication:       'plain',
+     enable_starttls_auto: true
+  }
 
   config.action_mailer.perform_caching = false
 
