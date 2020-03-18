@@ -43,9 +43,13 @@ group :development do
   gem 'letter_opener'
   # ダミーデータ用gem
   gem 'faker'
-
 # 環境変数管理用gem
   gem 'dotenv-rails'
+  
+  gem 'pry-rails'
+  gem 'pry-doc'
+  gem 'pry-stack_explorer'
+  gem 'pry-byebug'
 end
 
 group :test do
