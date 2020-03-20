@@ -7,7 +7,7 @@ class WeathersController < ApplicationController
     require "open-uri"
     require "dotenv"
 
-      response = open(URL + "?id=1863958&units=metric&lang=ja&appid=#{ENV["OPEN_WEATHER_API_KEY"]}")
+      response = open(URL + "?id=#{ENV["PREFECTURE"]}&units=metric&lang=ja&appid=#{ENV["OPEN_WEATHER_API_KEY"]}")
       # OpenWeatherMapから取得したJSONの配列をパース
       @result = JSON.parse(response.read)
       # 表示用のインスタンス変数に取得結果を格納

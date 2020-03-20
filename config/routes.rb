@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :weathers
+  resources :weathers, only: %i(show)
 
 end
