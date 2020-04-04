@@ -1,19 +1,14 @@
-require "json"
-require "open-uri"
-require "dotenv"
-
 class WeathersController < ApplicationController
 
-  URL = "http://api.openweathermap.org/data/2.5/weather"
-
   def show
-    response = open(URL + "?id=#{ENV["PREFECTURE"]}&units=metric&lang=ja&appid=#{ENV["OPEN_WEATHER_API_KEY"]}")
-    # OpenWeatherMapから取得したJSONの配列をパース
-    @result = JSON.parse(response.read)
-    # 表示用のインスタンス変数に取得結果を格納
-    @weather_detail = @result.dig("weather", 0, "description")
-    @temp = @result.dig("main", "temp")
-    @humidity = @result.dig("main", "humidity").round
+    weather = Weather.request_api
+    @weather = weather.fetch(:weather_detail)
+    @temp = weather.fetch(:temp)
+    @humidity = weather.fetch(:humidity)
+    @message = weather.fetch(:weather_message)
+    @temperature_message = weather.fetch(:temperature_message)
+    @humidity_message = weather.fetch(:humidity_message)
+
   end
 
 end
