@@ -1,3 +1,5 @@
+require './lib/weather'
+
 class WeathersController < ApplicationController
 
   def show
