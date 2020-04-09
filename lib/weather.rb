@@ -21,6 +21,7 @@ class Weather < ApplicationRecord
     @temp = result.dig("main", "temp").round
     @humidity = result.dig("main", "humidity").round
     @weather_icon = result.dig("weather", 0, "icon")
+    @prefecture = result.dig("name")
     weather_info = {
       weather_detail: weather_detail,
       temp: @temp,
@@ -28,7 +29,8 @@ class Weather < ApplicationRecord
       weather_message: weather_message,
       temperature_message: temperature_message,
       humidity_message: humidity_message,
-      weather_icon: @weather_icon
+      weather_icon: @weather_icon,
+      prefecture: prefecture_in_japanese,
     }
     weather_info
   end
@@ -51,7 +53,7 @@ private
     when 0..10
       "外は寒そうです。コートを持っていきましょう"
     when 11..25
-      "すごしやすい気温です！薄着でOK"
+      "すごしやすい気温です！薄着でOK！"
     when 25..35
       "外はかなり暑いです！水分をとりましょう"
     when 35..50
@@ -67,9 +69,9 @@ private
     when 0..39
       "乾燥しています！"
     when 40..59
-      "過ごしやすい湿度です"
+      "過ごしやすい湿度です。"
     when 60..100
-      "湿度が高くジメジメしています"
+      "湿度が高めです！"
     else
       "湿度が読み取れません"
     end
@@ -89,4 +91,17 @@ private
       return "霧" if @weather_detail == "mist"
       return "強風" if @weather_detail == "tornado"
       @weather_detail
+  end
+
+  def prefecture_in_japanese
+    return "福岡県" if @prefecture == "Fukuoka"
+    return "鹿児島県" if @prefecture == "Kagoshima"
+    return "熊本県" if @prefecture == "Kumamoto"
+    return "長崎県" if @prefecture == "Nagasaki"
+    return "佐賀県" if @prefecture == "Saga"
+    return "大分県" if @prefecture == "Oita"
+    return "宮崎県" if @prefecture == "Miyazaki"
+    return "沖縄県" if @prefecture == "Okinawa"
+    return "山口県" if @prefecture == "Yamaguchi"
+    @prefecture
   end
