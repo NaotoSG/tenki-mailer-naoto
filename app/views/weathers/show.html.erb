@@ -1,8 +1,25 @@
-<p>おはようございます。</p>
-<p><%= "天気：#{@weather}" %></p>
-<p><%= "気温：#{@temp}℃" %></p>
-<p><%= "湿度：#{@humidity}%" %></p>
-<p><%= "#{@temperature_message}" %></p>
+<p>今日の天気をお知らせします</p>
+<p><%= "今日は#{@temperature_message}" %></p>
 <p><%= "#{@humidity_message}" %></p>
 <p><%= "#{@message}" %></p>
-<img src=<%= "http://openweathermap.org/img/w/#{@weather_icon}.png" %>  alt="天気アイコン" width="80"/>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">地域</th>
+      <th scope="col">天気</th>
+      <th scope="col">気温</th>
+      <th scope="col">湿度</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"><%= "#{@prefecture}" %></th>
+      <td>
+        <img src=<%= "http://openweathermap.org/img/w/#{@weather_icon}.png" %>  alt="天気アイコン" width="50"/>
+      </td>
+      <td><%= "#{@temp}℃" %></td>
+      <td><%= "#{@humidity}％" %></td>
+    </tr>
+  </tbody>
+</table>

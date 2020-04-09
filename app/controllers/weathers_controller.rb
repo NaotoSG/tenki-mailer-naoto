@@ -11,6 +11,7 @@ class WeathersController < ApplicationController
     @temperature_message = weather.fetch(:temperature_message)
     @humidity_message = weather.fetch(:humidity_message)
     @weather_icon = weather.fetch(:weather_icon)
+    @prefecture = weather.fetch(:prefecture)
   end
 
 end
